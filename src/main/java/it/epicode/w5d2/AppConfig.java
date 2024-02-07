@@ -126,5 +126,10 @@ public class AppConfig {
         return Double.parseDouble(c);
     }
 
+    @Bean("lista_toppings")
+    public List<Topping> listaToppings() {
+        return List.of(salami(), ham(), cheese(), tomato(), onions());
+    }
+
 
 }

@@ -14,6 +14,6 @@ public class Pizza extends MenuItem {
     @Override
     public String toString() {
         return super.getNome() + " ___ " + super.getCalorie() + "Kcal ___ " + toppings.stream()
-            .map(Topping::getNome).collect(Collectors.joining(", ")) + "€" + super.getPrezzo();
+            .map(Topping::getNome).collect(Collectors.joining(", ")) + "€ ___ " + super.getPrezzo();
     }
 }
