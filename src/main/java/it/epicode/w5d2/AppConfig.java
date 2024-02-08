@@ -122,7 +122,6 @@ public class AppConfig {
 
     @Bean("cc")
     public double getCostoCoperto(@Value("${ordine.costo_coperto}") String c) {
-        System.out.println(c);
         return Double.parseDouble(c);
     }
 

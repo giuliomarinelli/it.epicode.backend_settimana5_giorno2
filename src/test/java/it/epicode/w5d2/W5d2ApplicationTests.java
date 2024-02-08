@@ -9,11 +9,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @SpringBootTest
 class W5d2ApplicationTests {
@@ -50,7 +52,7 @@ class W5d2ApplicationTests {
     void verificaDipendenzaDiOrdineDaTavolo() {
         Ordine o = context.getBean(Ordine.class);
         Tavolo t = context.getBean(Tavolo.class);
-        Assertions.assertEquals(o.getTavolo(), t);
+        Assertions.assertSame(t, o.getTavolo());
     }
 
     @ParameterizedTest
@@ -76,5 +78,18 @@ class W5d2ApplicationTests {
                 () -> Assertions.assertEquals(prezzoMaxAtteso, calcMax),
                 () -> Assertions.assertEquals(prezzoAvAtteso, calcAv)
         );
+
+    }
+
+    static Stream<String> fornisciINomiPerIToppings() {
+        List<Topping> lista = context.getBean("lista_toppings", List.class);
+        return lista.stream().map(Topping::getNome);
+    }
+
+    @ParameterizedTest
+    @MethodSource("fornisciINomiPerIToppings")
+    void verificaINomiDeiToppings(String nome) {
+        List<Topping> lista = context.getBean("lista_toppings", List.class);
+        Assertions.assertTrue(lista.stream().map(Topping::getNome).toList().contains(nome));
     }
 }
