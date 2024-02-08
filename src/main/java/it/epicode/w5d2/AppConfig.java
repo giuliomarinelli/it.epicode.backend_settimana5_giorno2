@@ -84,11 +84,6 @@ public class AppConfig {
         Pizza p = new Pizza();
         p.setNome("Pizza Margherita");
         p.setCalorie(600);
-        List<Topping> lista = p.getToppings();
-        lista.add(cheese());
-        lista.add(tomato());
-        p.setPrezzo(lista.stream().mapToDouble(Topping::getPrezzo).sum() + prezzoBase);
-        p.setToppings(lista);
         return p;
     }
 
@@ -97,12 +92,6 @@ public class AppConfig {
         Pizza p = new Pizza();
         p.setNome("Pizza e Cipolle");
         p.setCalorie(650);
-        List<Topping> lista = p.getToppings();
-        lista.add(cheese());
-        lista.add(tomato());
-        lista.add(onions());
-        p.setPrezzo(lista.stream().mapToDouble(Topping::getPrezzo).sum() + prezzoBase);
-        p.setToppings(lista);
         return p;
     }
 
@@ -111,12 +100,6 @@ public class AppConfig {
         Pizza p = new Pizza();
         p.setNome("Pizza con Pancetta");
         p.setCalorie(700);
-        List<Topping> lista = p.getToppings();
-        lista.add(cheese());
-        lista.add(tomato());
-        lista.add(ham());
-        p.setPrezzo(lista.stream().mapToDouble(Topping::getPrezzo).sum() + prezzoBase);
-        p.setToppings(lista);
         return p;
     }
 
